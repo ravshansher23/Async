@@ -5,7 +5,7 @@ import json
 from socket import *
 from time import time
 from message import send_message, get_message
-
+from variables import *
 
 
 def presence(account_name='Guest'):
@@ -16,14 +16,13 @@ def presence(account_name='Guest'):
     '''
     # {'action': 'presence', 'time': 1573760672.167031, 'user': {'account_name': 'Guest'}}
     out = {
-        "action": "presence",
-        "time": time(),
-        "user": {
-            "account_name": account_name
+        ACTION: PRESENCE,
+        TIME: time(),
+        USER: {
+            ACCOUNT_NAME: account_name
         }
     }
     return out
-
 
 
 def process_ans(message):
@@ -32,10 +31,10 @@ def process_ans(message):
     :param message:
     :return:
     '''
-    if "response" in message:
-        if message["response"] == 200:
+    if RESPONSE in message:
+        if message[RESPONSE] == 200:
             return '200 : OK'
-        return f'400 : {message["error"]}'
+        return f'400 : {message[ERROR]}'
     raise ValueError
 
 
@@ -46,11 +45,11 @@ def main():
     try:
         server_address = sys.argv[1]
         server_port = int(sys.argv[2])
-        if server_port < 1024 or server_port > 65535:
+        if server_port < MAX_PACKAGE_LENGTH or server_port > 65535:
             raise ValueError
     except IndexError:
-        server_address = "localhost"
-        server_port = 7777
+        server_address = DEFAULT_IP_ADDRESS
+        server_port = DEFAULT_PORT
     except ValueError:
         print('В качестве порта может быть указано только число в диапазоне от 1024 до 65535.')
         sys.exit(1)

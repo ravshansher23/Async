@@ -4,7 +4,7 @@ from socket import *
 import sys
 import json
 from message import send_message, get_message
-
+from variables import *
 
 def process_client_message(message):
     '''
@@ -17,12 +17,12 @@ def process_client_message(message):
     '''
 
     # {'action': 'presence', 'time': 1573760672.167031, 'user': {'account_name': 'Guest'}}
-    if 'action' in message and message['action'] == 'presence' and 'time' in message \
-            and 'user' in message and message['user']['account_name'] == 'Guest':
-        return {'response': 200}
+    if ACTION in message and message[ACTION] == PRESENCE and TIME in message \
+            and USER in message and message[USER][ACCOUNT_NAME] == 'Guest':
+        return {RESPONSE: 200}
     return {
-        'response': 400,
-        'error': 'Bad Request'
+        RESPONSE: 400,
+        ERROR: 'Bad Request'
     }
 
 
@@ -38,8 +38,8 @@ def main():
         if '-p' in sys.argv:
             listen_port = int(sys.argv[sys.argv.index('-p') + 1])
         else:
-            listen_port = 7777
-        if listen_port < 1024 or listen_port > 65535:
+            listen_port = DEFAULT_PORT
+        if listen_port < MAX_PACKAGE_LENGTH or listen_port > 65535:
             raise ValueError
     except IndexError:
         print('После параметра -\'p\' необходимо указать номер порта.')
