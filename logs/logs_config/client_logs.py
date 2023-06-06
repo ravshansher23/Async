@@ -9,10 +9,11 @@ sys.path.append('../')
 
 # создаём формировщик логов (formatter):
 CLIENT_FORMATTER = logging.Formatter('%(asctime)s %(levelname)s %(filename)s %(message)s')
-PATH = '../logs_file'
-# Подготовка имени файла для логирования
+log_directory = os.path.join(os.getcwd(), 'logs_file')
+os.makedirs(log_directory, exist_ok=True)
 
-PATH = os.path.join(PATH, 'client.log')
+# Set up the log file path
+PATH = os.path.join(log_directory, 'clients.log')
 
 # создаём потоки вывода логов
 STREAM_HANDLER = logging.StreamHandler(sys.stdout)
