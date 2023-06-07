@@ -1,4 +1,5 @@
 from socket import *
+
 """Программа-сервер"""
 
 import sys
@@ -8,8 +9,13 @@ from variables import *
 import argparse
 import logging
 import logs.logs_config.server_logs
+from decor import Log
+import decor
 
 SERVER_LOGGER = logging.getLogger('server')
+
+
+@Log()
 def process_client_message(message):
     '''
     Обработчик сообщений от клиентов, принимает словарь -
@@ -28,6 +34,8 @@ def process_client_message(message):
         RESPONSE: 400,
         ERROR: 'Bad Request'
     }
+
+@Log()
 def create_arg_parser():
     """
     Парсер аргументов коммандной строки
@@ -37,6 +45,7 @@ def create_arg_parser():
     parser.add_argument('-p', default=DEFAULT_PORT, type=int, nargs='?')
     parser.add_argument('-a', default='', nargs='?')
     return parser
+
 
 def main():
     parser = create_arg_parser()

@@ -10,9 +10,12 @@ import argparse
 import logging
 import logs.logs_config.client_logs
 from errors import ReqFieldMissingError
+from decor import Log
 
 
 CLIENT_LOGGER = logging.getLogger('client')
+
+@Log()
 def presence(account_name='Guest'):
     '''
     Функция генерирует запрос о присутствии клиента
@@ -30,7 +33,7 @@ def presence(account_name='Guest'):
     CLIENT_LOGGER.debug(f'Сформировано {PRESENCE} сообщение для пользователя {account_name}')
     return out
 
-
+@Log()
 def process_ans(message):
     '''
     Функция разбирает ответ сервера
@@ -44,6 +47,8 @@ def process_ans(message):
         return f'400 : {message[ERROR]}'
     raise ValueError
 
+
+@Log()
 def create_arg_parser():
     """
     Создаём парсер аргументов коммандной строки
