@@ -1,0 +1,5 @@
+2023-06-12 17:52:49,501 DEBUG client.py Сформирован словарь сообщения: {'action': 'message', 'from': 'user2', 'to': 'user1', 'time': 1686581569.5013223, 'mess_text': 'Test'}
+2023-06-12 17:52:49,502 INFO client.py Отправлено сообщение для пользователя user1
+2023-06-12 17:52:49,505 DEBUG client.py Вызов функции create_message с параметрами (<socket.socket fd=5, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 33150), raddr=('127.0.0.1', 7777)>, 'user2') и {}Вызов из модуля __main__.Вызов из функции user_interactive
+2023-06-12 17:53:13,251 INFO client.py Получено сообщение от пользователя user1:
+test2
