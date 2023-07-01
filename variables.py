@@ -9,6 +9,8 @@ MAX_PACKAGE_LENGTH = 1024
 # Кодировка проекта
 ENCODING = 'utf-8'
 LOGGING_LEVEL = logging.DEBUG
+#БД
+SERVER_DATABASE = 'sqlite:///server_db.db3'
 # Прококол JIM основные ключи:
 ACTION = 'action'
 TIME = 'time'
